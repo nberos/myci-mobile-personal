@@ -3,7 +3,7 @@ import {View, TextInput, StyleSheet, Pressable} from 'react-native';
 
 import ShowPassword from '../Buttons/ShowPassword';
 
-const Input = ({placeholder, type, style, icon}) => {
+const Input = ({placeholder, style, icon, value, setValue}) => {
   const [showPass, setShowPass] = useState(true);
 
   const showPasswordHandler = () => setShowPass(!showPass);
@@ -12,8 +12,11 @@ const Input = ({placeholder, type, style, icon}) => {
     <View style={styles.inputContainer}>
       <TextInput
         placeholder={placeholder}
-        type={showPass ? type : 'text'}
         style={[styles.input, style]}
+        value={value}
+        onChangeText={val => setValue(val)}
+        autoCapitalize="none"
+        secureTextEntry={icon}
       />
       {icon && (
         <ShowPassword onPress={showPasswordHandler} showPass={showPass} />
