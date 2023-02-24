@@ -14,18 +14,11 @@ const Auth = () => {
   return (
     <AuthStack.Navigator
       screenOptions={{
-        headerStyle: {
-          backgroundColor: 'transparent',
-        },
+        headerStyle: {backgroundColor: 'transparent'},
         headerRight: () => <Burger1 width={18} height={8} />,
         headerLeft: () => <HLogo width={165} height={40} />,
-        headerRightContainerStyle: {
-          paddingHorizontal: 15,
-        },
-
-        headerLeftContainerStyle: {
-          paddingHorizontal: 15,
-        },
+        headerRightContainerStyle: {paddingHorizontal: 15},
+        headerLeftContainerStyle: {paddingHorizontal: 15},
         title: '',
       }}>
       <AuthStack.Screen name="Login" component={Login} />

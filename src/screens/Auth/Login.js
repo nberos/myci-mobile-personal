@@ -13,49 +13,27 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import loggedIn from '../../navigation/LoggedIn/LoggedIn';
 
-const URL = 'http://myci-adm.test.ol.ge/mci-back';
+const URL = 'https://myci.dev.ol.ge/mci-back';
 const AUTH = '/resources/front/auth';
 
-//http://myci-adm.test.ol.ge/mci-back/resources/front/auth
 const Login = () => {
   const [username, setUsername] = useState('admin@admin.com');
   const [password, setPassword] = useState('admin@admin.com');
 
   const authButtonHandler = async () => {
-    const credentials = {password: password, username: username};
-
     try {
-      const response = await fetch(
-        'https://myci-adm.test.ol.ge/mci-back/resources/front/auth',
-        {
-          method: 'POST',
-          // mode: 'cors',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({password: password, username: username}),
+      const response = await fetch(URL + AUTH, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      );
+        body: {password: password, username: username},
+      });
 
-      console.log(response.json());
+      console.log(response);
     } catch (e) {
       throw new Error(e);
     }
-    // axios({
-    //   method: 'post',
-    //   url: 'https://myci-adm.test.ol.ge/mci-back/resources/front/auth',
-    //   data: {
-    //     password: password,
-    //     username: username,
-    //   },
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // })
-    //   .then(data => console.log('data', data.headers))
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
   };
 
   return (
