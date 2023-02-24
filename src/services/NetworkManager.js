@@ -1,18 +1,9 @@
-import ApiClient from './ApiClient';
+import axios from 'axios';
 
-import Api from './Api';
+import {AuthCustomer} from './Api';
+import {BASE_URL} from '@env';
+//'http://myci-adm.test.ol.ge/mci-back/resources/front/auth'
 
-class NetworkManager {
-  // static async AuthorizeCustomer(username, password) {
-  //   return await ApiClient.post(Api.AuthorizeCustomer, {
-  //     username: username,
-  //     password: password,
-  //   });
-  // }
-
-  static async getUsers(url) {
-    return await ApiClient.get(url);
-  }
-}
-
-export default NetworkManager;
+export const AuthorizeCustomer = data => {
+  return axios.post(BASE_URL + AuthCustomer, data);
+};
