@@ -3,14 +3,20 @@ import {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Login from '../../screens/Auth/Login';
-import LoggedIn from '../LoggedIn/LoggedIn';
+import MainBottom from '../Main/MainBottom';
 
 import HLogo from '../../assets/svg/logo blc.svg';
 import Burger1 from '../../assets/svg/burger.svg';
+import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
+import {selectAuth} from '../../redux/reducers/auth/auth.selectors';
 
 const AuthStack = createStackNavigator();
 
 const Auth = () => {
+  const {isToken} = useSelector(state => state.authReducer);
+  // const tokens = useSelector(selectTokens);
+
   return (
     <AuthStack.Navigator
       screenOptions={{
@@ -21,7 +27,11 @@ const Auth = () => {
         headerLeftContainerStyle: {paddingHorizontal: 15},
         title: '',
       }}>
-      <AuthStack.Screen name="Login" component={Login} />
+      {!isToken ? (
+        <AuthStack.Screen name="Login" component={Login} />
+      ) : (
+        <AuthStack.Screen name="MainScreen" component={MainBottom} />
+      )}
     </AuthStack.Navigator>
   );
 };

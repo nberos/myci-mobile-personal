@@ -1,5 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {useEffect, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Input from '../../components/Inputs/Input';
 import BLogo from '../../assets/svg/1.svg';
@@ -8,14 +10,12 @@ import Button from '../../components/Buttons/Button';
 import Link from '../../components/Buttons/Link';
 
 import {AuthorizeCustomer} from '../../services/NetworkManager';
-import {ScrollView} from 'react-native-gesture-handler';
-import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {setToken} from '../../redux/reducers/auth/auth.actions';
 
 // 28888888888
 // asernasib1
 
-const Login = () => {
+const Login = ({navigation}) => {
   const [username, setUsername] = useState('17001031891');
   const [password, setPassword] = useState('123qweQWE!@#');
 
@@ -32,6 +32,7 @@ const Login = () => {
           'refreshToken',
           response?.data?.refreshToken,
         );
+        setToken(response.data);
       } else {
         console.log('No data');
       }
