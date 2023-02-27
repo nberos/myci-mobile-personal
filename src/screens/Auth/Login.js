@@ -20,6 +20,7 @@ import {setTokens} from '../../utils/storage';
 const Login = ({navigation}) => {
   const [username, setUsername] = useState('17001031891');
   const [password, setPassword] = useState('123qweQWE!@#');
+  const [invalidCredentials, setInvalidCredentials] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -35,12 +36,19 @@ const Login = ({navigation}) => {
         await setTokens(response.data);
       }
     } catch (e) {
-      throw new Error(e);
+      console.log(e);
     }
   };
 
+  const registrationHandler = () => navigation.navigate('UserType');
+
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, position: 'relative'}}>
+      {invalidCredentials && (
+        <View style={{position: 'absolute', right: 15, top: 50}}>
+          <Text></Text>
+        </View>
+      )}
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.logoContainer}>
@@ -69,7 +77,7 @@ const Login = ({navigation}) => {
         </View>
         <View style={styles.footerContainer}>
           <Text>არ გაქვს ანგარიში? </Text>
-          <Link title="რეგისტრაცია" />
+          <Link title="რეგისტრაცია" onPress={registrationHandler} />
         </View>
       </ScrollView>
     </View>
@@ -95,6 +103,7 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   footerContainer: {
+    marginTop: 50,
     backgroundColor: '#f4f4f4',
     alignItems: 'center',
     justifyContent: 'center',

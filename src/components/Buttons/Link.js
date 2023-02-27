@@ -1,10 +1,12 @@
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, Pressable} from 'react-native';
 
-const Link = ({title, style}) => {
+const Link = ({title, style, onPress}) => {
   return (
-    <View>
-      <Text style={[styles.title, style]}>{title}</Text>
-    </View>
+    <Pressable onPress={onPress}>
+      <View>
+        <Text style={[styles.title, style]}>{title}</Text>
+      </View>
+    </Pressable>
   );
 };
 
