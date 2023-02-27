@@ -11,6 +11,8 @@ import Link from '../../components/Buttons/Link';
 
 import {AuthorizeCustomer} from '../../services/NetworkManager';
 import {setToken} from '../../redux/reducers/auth/auth.actions';
+import {useDispatch} from 'react-redux';
+import {setTokens} from '../../utils/storage';
 
 // 28888888888
 // asernasib1
@@ -18,6 +20,8 @@ import {setToken} from '../../redux/reducers/auth/auth.actions';
 const Login = ({navigation}) => {
   const [username, setUsername] = useState('17001031891');
   const [password, setPassword] = useState('123qweQWE!@#');
+
+  const dispatch = useDispatch();
 
   const authButtonHandler = async () => {
     try {
@@ -27,14 +31,8 @@ const Login = ({navigation}) => {
       });
 
       if (response.data) {
-        await AsyncStorage.setItem('accessToken', response?.data?.accessToken);
-        await AsyncStorage.setItem(
-          'refreshToken',
-          response?.data?.refreshToken,
-        );
-        setToken(response.data);
-      } else {
-        console.log('No data');
+        dispatch(setToken(response.data));
+        await setTokens(response.data);
       }
     } catch (e) {
       throw new Error(e);

@@ -5,7 +5,7 @@ export const setToken = token => {
     try {
       dispatch({type: types.SET_TOKEN, token: token});
     } catch (error) {
-      throw new Error(error);
+      console.log(error);
     }
   };
 };

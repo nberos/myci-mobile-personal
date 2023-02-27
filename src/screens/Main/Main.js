@@ -1,13 +1,24 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {View, Text} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import Button from '../../components/Buttons/Button';
 import {removeToken} from '../../redux/reducers/auth/auth.actions';
+import {selectAuth} from '../../redux/reducers/auth/auth.selectors';
+import {ReauthorizeCustomer} from '../../services/NetworkManager';
+import {removeTokens} from '../../utils/storage';
 
 const Main = ({navigation}) => {
+  const tokens = useSelector(selectAuth);
+
+  const dispatch = useDispatch();
+
   const logoutHandler = async () => {
-    await AsyncStorage.removeItem('accessToken');
-    await AsyncStorage.removeItem('refreshToken');
-    removeToken();
+    try {
+      await removeTokens();
+      dispatch(removeToken());
+    } catch (error) {
+      throw new Error(error);
+    }
   };
 
   return (
