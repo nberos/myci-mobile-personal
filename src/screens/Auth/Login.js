@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Modal, Pressable} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -13,6 +13,7 @@ import {AuthorizeCustomer} from '../../services/NetworkManager';
 import {setToken} from '../../redux/reducers/auth/auth.actions';
 import {useDispatch} from 'react-redux';
 import {setTokens} from '../../utils/storage';
+import InvalidModal from '../../components/Modals/InvalidModal';
 
 // 28888888888
 // asernasib1
@@ -37,6 +38,7 @@ const Login = ({navigation}) => {
       }
     } catch (e) {
       console.log(e);
+      setInvalidCredentials(!invalidCredentials);
     }
   };
 
@@ -44,11 +46,10 @@ const Login = ({navigation}) => {
 
   return (
     <View style={{flex: 1, position: 'relative'}}>
-      {invalidCredentials && (
-        <View style={{position: 'absolute', right: 15, top: 50}}>
-          <Text></Text>
-        </View>
-      )}
+      <InvalidModal
+        invalidCredentials={invalidCredentials}
+        setInvalidCredentials={setInvalidCredentials}
+      />
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.logoContainer}>
