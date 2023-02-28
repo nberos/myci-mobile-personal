@@ -8,9 +8,9 @@ import {
 
 const Button = ({title, onPress}) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <Pressable style={styles.container} onPress={onPress}>
       <Text style={styles.title}>{title}</Text>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

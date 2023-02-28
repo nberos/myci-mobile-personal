@@ -11,6 +11,8 @@ import PersonalInfo from '../../screens/Register/PersonalInfo';
 import SetPassword from '../../screens/Register/SetPassword';
 import VerificationMethod from '../../screens/Register/VerificationMethod';
 import Conditions from '../../screens/Register/Conditions';
+import FPUser from '../../screens/ForgotPassword/FPUser';
+import FPNew from '../../screens/ForgotPassword/FPNew';
 
 const AuthStack = createStackNavigator();
 
@@ -35,6 +37,8 @@ const Auth = () => {
         component={VerificationMethod}
       />
       <AuthStack.Screen name="Conditions" component={Conditions} />
+      <AuthStack.Screen name="FPUser" component={FPUser} />
+      <AuthStack.Screen name="FPNew" component={FPNew} />
     </AuthStack.Navigator>
   );
 };

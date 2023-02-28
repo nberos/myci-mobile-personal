@@ -14,6 +14,7 @@ import {setToken} from '../../redux/reducers/auth/auth.actions';
 import {useDispatch} from 'react-redux';
 import {setTokens} from '../../utils/storage';
 import InvalidModal from '../../components/Modals/InvalidModal';
+import AuthFooter from '../../components/UI/AuthFooter';
 
 // 28888888888
 // asernasib1
@@ -44,6 +45,8 @@ const Login = ({navigation}) => {
 
   const registrationHandler = () => navigation.navigate('UserType');
 
+  const forgotPasswordHandler = () => navigation.replace('FPUser');
+
   return (
     <View style={{flex: 1, position: 'relative'}}>
       <InvalidModal
@@ -72,14 +75,16 @@ const Login = ({navigation}) => {
             <Link
               title="დაგავიწყდა პაროლი?"
               style={{fontSize: 11, position: 'absolute', right: 15, top: 9}}
+              onPress={forgotPasswordHandler}
             />
             <Button title="ᲐᲕᲢᲝᲠᲘᲖᲐᲪᲘᲐ" onPress={authButtonHandler} />
           </View>
         </View>
-        <View style={styles.footerContainer}>
-          <Text>არ გაქვს ანგარიში? </Text>
-          <Link title="რეგისტრაცია" onPress={registrationHandler} />
-        </View>
+        <AuthFooter
+          onPress={registrationHandler}
+          text="არ გაქვს ანგარიში?"
+          title="რეგისტრაცია"
+        />
       </ScrollView>
     </View>
   );
@@ -102,14 +107,6 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: 15,
     position: 'relative',
-  },
-  footerContainer: {
-    marginTop: 50,
-    backgroundColor: '#f4f4f4',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 30,
-    paddingBottom: 34,
-    flexDirection: 'row',
+    marginBottom: 50,
   },
 });
