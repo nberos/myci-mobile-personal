@@ -1,19 +1,11 @@
 import {View, Text, StyleSheet, Pressable} from 'react-native';
-import {
-  CodeField,
-  Cursor,
-  useBlurOnFulfill,
-  useClearByFocusCell,
-} from 'react-native-confirmation-code-field';
+import {useState} from 'react';
+import CodeCells from '../UI/CodeCells';
 
 const ForgotPasswordCode = () => {
   const [value, setValue] = useState('');
-  const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
-  const [props, getCellOnLayoutHandler] = useClearByFocusCell({
-    value,
-    setValue,
-  });
 
+  console.log(value);
   return (
     <View style={styles.container}>
       <View style={styles.progress}>
@@ -26,7 +18,9 @@ const ForgotPasswordCode = () => {
           }}></View>
       </View>
       <Text style={styles.title}>შეიყვანეთ დასტურის კოდი</Text>
-      <View style={styles.code}></View>
+      {/* <View style={styles.code}> */}
+      <CodeCells value={value} setValue={setValue} />
+      {/* </View> */}
       <Pressable>
         <View style={styles.button}>
           <Text style={styles.buttonTitle}>ხელახლა გამოგზავნა</Text>
