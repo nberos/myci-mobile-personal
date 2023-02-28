@@ -1,9 +1,10 @@
 import {View, Text} from 'react-native';
+import RegistrationFooter from '../../components/UI/RegistrationFooter';
 
-const Contacts = () => {
+const Contacts = ({navigation}) => {
   return (
     <View>
-      <Text>Contacts</Text>
+      <RegistrationFooter navigation={navigation} />
     </View>
   );
 };
