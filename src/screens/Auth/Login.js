@@ -43,8 +43,6 @@ const Login = ({navigation}) => {
     }
   };
 
-  const registrationHandler = () => navigation.navigate('UserType');
-
   const forgotPasswordHandler = () => navigation.replace('FPUser');
 
   return (
@@ -80,11 +78,7 @@ const Login = ({navigation}) => {
             <Button title="ᲐᲕᲢᲝᲠᲘᲖᲐᲪᲘᲐ" onPress={authButtonHandler} />
           </View>
         </View>
-        <AuthFooter
-          onPress={registrationHandler}
-          text="არ გაქვს ანგარიში?"
-          title="რეგისტრაცია"
-        />
+        <AuthFooter text="არ გაქვს ანგარიში?" title="რეგისტრაცია" />
       </ScrollView>
     </View>
   );
