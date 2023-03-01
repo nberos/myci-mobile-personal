@@ -15,7 +15,7 @@ import {
 import {selectForgotpassword} from '../../redux/reducers/forgotpassword/forgotpassword.selectors';
 
 const FPUser = ({navigation}) => {
-  const [username, setUsername] = useState('17001031891');
+  const [username, setUsername] = useState('25001047858');
   const [usernameEntered, setUsernameEntered] = useState(false);
   const [showCode, setShowCode] = useState(false);
   const {code} = useSelector(selectForgotpassword);
@@ -27,6 +27,7 @@ const FPUser = ({navigation}) => {
 
       if (sendotpResult.status === 204) {
         const otpDurationStatus = await GetOTPDuration();
+        console.log(otpDurationStatus.data.seconds);
         dispatch(setDuration(otpDurationStatus.data.seconds));
         dispatch(setUserName(username));
         setShowCode(true);

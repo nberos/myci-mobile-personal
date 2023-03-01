@@ -9,7 +9,7 @@ import {ChangePassword} from '../../services/NetworkManager';
 import {useSelector} from 'react-redux';
 import {selectForgotpassword} from '../../redux/reducers/forgotpassword/forgotpassword.selectors';
 
-const FPNew = () => {
+const FPNew = ({navigation}) => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const {username} = useSelector(selectForgotpassword);
@@ -18,8 +18,10 @@ const FPNew = () => {
     try {
       if (newPassword === confirmPassword) {
         const response = await ChangePassword(username, newPassword);
+        setNewPassword('');
+        setConfirmPassword('');
+        navigation.navigate('Login');
       }
-      console.log('error');
     } catch (error) {
       console.log(error);
     }

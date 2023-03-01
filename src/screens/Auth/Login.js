@@ -20,8 +20,8 @@ import AuthFooter from '../../components/UI/AuthFooter';
 // asernasib1
 
 const Login = ({navigation}) => {
-  const [username, setUsername] = useState('17001031891');
-  const [password, setPassword] = useState('123qweQWE!@#');
+  const [username, setUsername] = useState('25001047858');
+  const [password, setPassword] = useState('paroli1212');
   const [invalidCredentials, setInvalidCredentials] = useState(false);
 
   const dispatch = useDispatch();
