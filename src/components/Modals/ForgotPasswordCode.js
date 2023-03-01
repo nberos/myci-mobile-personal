@@ -1,11 +1,38 @@
 import {View, Text, StyleSheet, Pressable} from 'react-native';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import {SendOTP} from '../../services/NetworkManager';
+
 import CodeCells from '../UI/CodeCells';
+import {useDispatch, useSelector} from 'react-redux';
+import {selectForgotpassword} from '../../redux/reducers/forgotpassword/forgotpassword.selectors';
+import {setCodeCell} from '../../redux/reducers/forgotpassword/forgotpassword.actions';
 
 const ForgotPasswordCode = () => {
+  const [progress, setProgress] = useState(1);
   const [value, setValue] = useState('');
+  const {username, seconds, code} = useSelector(selectForgotpassword);
+  const dispatch = useDispatch();
 
-  console.log(value);
+  const btnDisableCondition = progress > seconds - 1;
+
+  const sendNewOtp = async () => {
+    const response = await SendOTP(username);
+  };
+
+  useEffect(() => {
+    dispatch(setCodeCell(value));
+  }, [value]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (progress < seconds + 1) {
+        setProgress(progress + 1);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [progress, seconds]);
+
   return (
     <View style={styles.container}>
       <View style={styles.progress}>
@@ -13,15 +40,19 @@ const ForgotPasswordCode = () => {
           style={{
             backgroundColor: '#C62B27',
             width: 120,
-            height: 12,
+            height: 10,
             borderRadius: 8,
+            width: 4.16 * progress,
+            alignSelf: 'flex-start',
           }}></View>
       </View>
       <Text style={styles.title}>შეიყვანეთ დასტურის კოდი</Text>
       {/* <View style={styles.code}> */}
       <CodeCells value={value} setValue={setValue} />
       {/* </View> */}
-      <Pressable>
+      <Pressable
+        disabled={btnDisableCondition ? false : true}
+        onPress={sendNewOtp}>
         <View style={styles.button}>
           <Text style={styles.buttonTitle}>ხელახლა გამოგზავნა</Text>
         </View>
@@ -39,8 +70,7 @@ const styles = StyleSheet.create({
   },
   progress: {
     backgroundColor: '#f4f4f4',
-    width: 250,
-    height: 12,
+    height: 10,
     borderRadius: 8,
     marginBottom: 4,
   },

@@ -107,6 +107,6 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: 15,
     position: 'relative',
-    marginBottom: 50,
+    marginBottom: 40,
   },
 });

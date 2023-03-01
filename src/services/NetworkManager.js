@@ -22,14 +22,17 @@ export const SendOTP = username => {
   return axios.post(BASE_URL + SendOTPEnd, {username: username});
 };
 
-export const ChangePassword = password => {
-  return axios.patch(BASE_URL + ChangePasswordEnd, {password: password});
+export const ChangePassword = (username, password) => {
+  return axios.patch(BASE_URL + ChangePasswordEnd, {
+    username: username,
+    password: password,
+  });
 };
 
-export const GetOPTDuration = () => {
+export const GetOTPDuration = () => {
   return axios.get(BASE_URL + GetOPTDurationEnd);
 };
 
-export const CheckOTP = username => {
-  return axios.post(BASE_URL + CheckOTPEnd, {username: username});
+export const CheckOTP = (username, code) => {
+  return axios.post(BASE_URL + CheckOTPEnd, {username: username, code: code});
 };

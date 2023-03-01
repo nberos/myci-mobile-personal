@@ -1,17 +1,28 @@
 import {View, Text, StyleSheet} from 'react-native';
+import {useState} from 'react';
 
-import BLogo from '../../assets/svg/Group 784.svg';
 import Input from '../../components/Inputs/Input';
 import Button from '../../components/Buttons/Button';
 import ForgotPasswordWrapper from '../../components/UI/ForgotPasswordWrapper';
-import {useState} from 'react';
+
+import {ChangePassword} from '../../services/NetworkManager';
+import {useSelector} from 'react-redux';
+import {selectForgotpassword} from '../../redux/reducers/forgotpassword/forgotpassword.selectors';
 
 const FPNew = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const {username} = useSelector(selectForgotpassword);
 
-  const confirmPasswordHandler = () => {
-    console.log(newPassword, confirmPassword);
+  const confirmPasswordHandler = async () => {
+    try {
+      if (newPassword === confirmPassword) {
+        const response = await ChangePassword(username, newPassword);
+      }
+      console.log('error');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

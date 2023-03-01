@@ -6,7 +6,7 @@ import {
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
 
-const CELL_COUNT = 4;
+const CELL_COUNT = 6;
 
 const CodeCells = ({value, setValue}) => {
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
