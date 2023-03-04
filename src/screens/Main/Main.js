@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useEffect} from 'react';
 import {View, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Button from '../../components/Buttons/Button';
@@ -11,6 +12,8 @@ const Main = ({navigation}) => {
   const tokens = useSelector(selectAuth);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {}, []);
 
   const logoutHandler = async () => {
     try {

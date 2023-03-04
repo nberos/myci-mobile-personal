@@ -45,6 +45,8 @@ const Login = ({navigation}) => {
 
   const forgotPasswordHandler = () => navigation.replace('FPUser');
 
+  const registrationHandler = () => navigation.navigate('UserType');
+
   return (
     <View style={{flex: 1, position: 'relative'}}>
       <InvalidModal
@@ -75,10 +77,18 @@ const Login = ({navigation}) => {
               style={{fontSize: 11, position: 'absolute', right: 15, top: 9}}
               onPress={forgotPasswordHandler}
             />
-            <Button title="ᲐᲕᲢᲝᲠᲘᲖᲐᲪᲘᲐ" onPress={authButtonHandler} />
+            <Button
+              title="ᲐᲕᲢᲝᲠᲘᲖᲐᲪᲘᲐ"
+              onPress={authButtonHandler}
+              addStyles={{marginTop: 40}}
+            />
           </View>
         </View>
-        <AuthFooter text="არ გაქვს ანგარიში?" title="რეგისტრაცია" />
+        <AuthFooter
+          text="არ გაქვს ანგარიში?"
+          title="რეგისტრაცია"
+          onPress={registrationHandler}
+        />
       </ScrollView>
     </View>
   );

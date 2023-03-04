@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: 'rgba(0, 0, 0, 0.1)',
-    padding: 18,
+    paddingHorizontal: 18,
     borderRadius: 20,
     fontSize: 12,
     lineHeight: 13.8,
