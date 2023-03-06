@@ -3,8 +3,8 @@ import {View, Text, Pressable, StyleSheet} from 'react-native';
 
 import Checkmark from '../../assets/svg/Icon ionic-ios-checkmark.svg';
 
-const ConfirmButton = ({text, onPress, type}) => {
-  const [showButton, setShowButton] = useState(true);
+const ConfirmButton = ({children, onPress, type}) => {
+  const [showButton, setShowButton] = useState(false);
 
   const pressHandler = () => {
     setShowButton(!showButton);
@@ -17,7 +17,7 @@ const ConfirmButton = ({text, onPress, type}) => {
           <Checkmark width={9} height={7} />
         </View>
       </Pressable>
-      <Text style={styles.title}>{text}</Text>
+      <Text style={styles.title}>{children}</Text>
     </View>
   );
 };

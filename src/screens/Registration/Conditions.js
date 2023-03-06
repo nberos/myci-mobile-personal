@@ -1,52 +1,53 @@
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, Animated} from 'react-native';
+import {useState} from 'react';
 
 import RegistrationTitle from '../../components/UI/RegistrationTitle';
 import RegistrationFooter from '../../components/UI/RegistrationFooter';
 import Button from '../../components/Buttons/Button';
 import {ScrollView} from 'react-native-gesture-handler';
 import ConfirmButton from '../../components/Buttons/ConfirmButton';
+import Link from '../../components/Buttons/Link';
+import BottomSheetModal from '../../components/Modals/BottomSheetModal';
 
 const Conditions = ({navigation}) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const additionalLink = (
+    <Link
+      style={{fontSize: 8}}
+      title="სარეკლამო პირობებს"
+      onPress={() => setShowModal(!showModal)}
+    />
+  );
+
   return (
-    <View>
-      <RegistrationTitle title="პირობები" />
-      <View style={styles.bodyContainer}>
-        <View style={styles.conditionsContainer}>
-          <ScrollView>
-            <Text style={styles.conditionsText}>
-              კომპანიაშესაძლებლობასაძლევს
-              მომხმარებელსისარგებლოსკომპანიისსერვისით - „ჩემიკრედიტინფო“,
-              რისსაფუძველზეც მომხმარებელსენიჭებაუფლებაგაეცნოს
-              კომპანიისმონაცემთაბაზაშიმისშესახებ
-              არსებულინფორმაციასინტერნეტისმეშვეობით კომპანიაშესაძლებლობასაძლევს
-              მომხმარებელსისარგებლოსკომპანიისსერვისით - „ჩემიკრედიტინფო“,
-              რისსაფუძველზეც მომხმარებელსენიჭებაუფლებაგაეცნოს
-              კომპანიისმონაცემთაბაზაშიმისშესახებ
-              არსებულინფორმაციასინტერნეტისმეშვეობითკომპანიაშესაძლებლობასაძლევს
-              მომხმარებელსისარგებლოსკომპანიისსერვისით - „ჩემიკრედიტინფო“,
-              რისსაფუძველზეც მომხმარებელსენიჭებაუფლებაგაეცნოს
-              კომპანიისმონაცემთაბაზაშიმისშესახებ
-              არსებულინფორმაციასინტერნეტისმეშვეობით კომპანიაშესაძლებლობასაძლევს
-              მომხმარებელსისარგებლოსკომპანიისსერვისით - „ჩემიკრედიტინფო“,
-              რისსაფუძველზეც მომხმარებელსენიჭებაუფლებაგაეცნოს
-              კომპანიისმონაცემთაბაზაშიმისშესახებ
-              არსებულინფორმაციასინტერნეტისმეშვეობით
-            </Text>
-          </ScrollView>
-        </View>
-        <View style={styles.btnContainer}>
-          <ConfirmButton
-            text="ვადასტურებ, რომ გავეცანი და ვეთანხმები წესებს და პირობებს."
-            type="required"
-          />
-          <ConfirmButton
-            text="ვადასტურებ, რომ გავეცანი და ვეთანხმები სარეკლამო პირობებს (არასავალდებულო)"
-            type="optional"
-          />
-        </View>
-        <Button title="ᲐᲕᲢᲝᲠᲘᲖᲐᲪᲘᲐ" />
-      </View>
-      <RegistrationFooter navigation={navigation} />
+    <View style={{flex: 1, position: 'relative'}}>
+      {showModal ? (
+        <BottomSheetModal show={showModal} setShow={setShowModal} />
+      ) : (
+        <>
+          <RegistrationTitle title="პირობები" />
+          <View style={styles.bodyContainer}>
+            <View style={styles.conditionsContainer}>
+              <ScrollView>
+                <Text style={styles.conditionsText}></Text>
+              </ScrollView>
+            </View>
+            <View style={styles.btnContainer}>
+              <ConfirmButton>
+                {'ვადასტურებ, რომ გავეცანი და ვეთანხმები წესებს და პირობებს.'}
+              </ConfirmButton>
+              <ConfirmButton>
+                {`ვადასტურებ, რომ გავეცანი და ვეთანხმები `}
+                {additionalLink}
+                {` (არასავალდებულო)`}
+              </ConfirmButton>
+            </View>
+            <Button title="ᲐᲕᲢᲝᲠᲘᲖᲐᲪᲘᲐ" />
+          </View>
+          <RegistrationFooter navigation={navigation} />
+        </>
+      )}
     </View>
   );
 };
