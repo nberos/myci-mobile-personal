@@ -19,7 +19,7 @@ const Confirmation = ({navigation}) => {
   };
 
   const onSendHandler = () => {
-    setShowCode(!showCode);
+    navigation.navigate('Conditions');
   };
 
   return (

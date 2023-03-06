@@ -23,6 +23,6 @@ const styles = StyleSheet.create({
     columnGap: 7.5,
   },
   title: {
-    fontSize: 14,
+    fontSize: 12,
   },
 });

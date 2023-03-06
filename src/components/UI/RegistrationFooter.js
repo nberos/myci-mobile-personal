@@ -17,6 +17,6 @@ const styles = StyleSheet.create({
   container: {
     height: 78,
     backgroundColor: '#f4f4f4',
-    padding: 13,
+    padding: 8,
   },
 });
