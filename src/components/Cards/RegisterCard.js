@@ -35,14 +35,14 @@ export default RegisterCard;
 const styles = StyleSheet.create({
   card: {
     width: 150,
-    height: 137,
+    height: 100,
     borderWidth: 1,
     borderColor: 'rgba(0,0,0,0.1)',
     borderRadius: 18,
     padding: 22,
     alignItems: 'center',
   },
-  cardTitle: {fontSize: 11, marginTop: 31},
+  cardTitle: {fontSize: 11, marginTop: 12},
   bgGreen: {backgroundColor: '#4CDE841A', borderColor: '#4cde84'},
   titleGreen: {color: '#4CDE84'},
 });
