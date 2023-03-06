@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {StyleSheet, View, Text, Pressable} from 'react-native';
 import Button from '../../components/Buttons/Button';
 
@@ -12,7 +12,10 @@ const UserType = ({navigation}) => {
   const [showButton, setShowButton] = useState(false);
   const [activeCard, setActiveCard] = useState('');
 
-  const navigateToNextHandler = () => navigation.navigate('PersonalInfo');
+  const navigateToNextHandler = () =>
+    navigation.navigate('PersonalInfo', {
+      customerType: activeCard,
+    });
 
   const cardPressHandler = val => {
     setShowButton(true);
@@ -24,19 +27,19 @@ const UserType = ({navigation}) => {
       <RegistrationTitle title="მომხმარებლის ტიპი" />
       <View style={styles.cardContainer}>
         <RegisterCard
-          title="იურიდიული პირი"
+          title="ფიზიკური პირი"
           SVG={LeftLogo}
           navigation={navigation}
           onPress={cardPressHandler}
-          customerType="COMPANY"
+          customerType="PERSON"
           active={activeCard}
         />
         <RegisterCard
-          title="ფიზიკური პირი"
+          title="იურიდიული პირი"
           SVG={RightLogo}
           navigation={navigation}
           onPress={cardPressHandler}
-          customerType="PERSON"
+          customerType="COMPANY"
           active={activeCard}
         />
       </View>

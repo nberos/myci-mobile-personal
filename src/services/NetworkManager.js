@@ -56,20 +56,8 @@ export const AcceptPromotionalOfferAgreement = () => {
   return axios.patch(BASE_URL + AcceptPromotionalOfferAgreementEnd);
 };
 
-export const RegisterCustomer = (
-  firstName,
-  lastName,
-  password,
-  customerType,
-  userName,
-) => {
-  return axios.post(BASE_URL + RegisterCustomerEnd, {
-    firstName: firstName,
-    lastName: lastName,
-    password: password,
-    customerType: customerType,
-    userName: userName,
-  });
+export const RegisterCustomer = data => {
+  return axios.post(BASE_URL + RegisterCustomerEnd, data);
 };
 
 export const GetUserAgreement = () => {

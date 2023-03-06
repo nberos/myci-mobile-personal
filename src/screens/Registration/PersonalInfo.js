@@ -6,14 +6,21 @@ import Input from '../../components/Inputs/Input';
 import RegistrationFooter from '../../components/UI/RegistrationFooter';
 import RegistrationTitle from '../../components/UI/RegistrationTitle';
 
-const PersonalInfo = ({navigation}) => {
+const PersonalInfo = ({navigation, route}) => {
   const [id, setId] = useState('');
   const [repeatId, setRepeatId] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
+  const {customerType} = route.params;
+
   const navigateToNextHandler = () => {
-    navigation.navigate('Password');
+    navigation.navigate('Password', {
+      customerType: customerType,
+      userName: id,
+      firstName: firstName,
+      lastName: lastName,
+    });
   };
 
   return (
