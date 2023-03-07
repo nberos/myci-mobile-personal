@@ -31,11 +31,11 @@ export const setOtpData = code => {
   };
 };
 
-export const fetchCountriesData = countries => {
+export const fetchCountriesData = access_token => {
   return async dispatch => {
     dispatch({type: types.FETCH_COUNTRIES_REQUEST});
     try {
-      const response = await GetCountries();
+      const response = await GetCountries(access_token);
       dispatch({type: types.FETCH_COUNTRIES_SUCCESS, payload: response.data});
     } catch (error) {
       dispatch({type: types.FETCH_COUNTRIES_FAILURE, error: error.message});

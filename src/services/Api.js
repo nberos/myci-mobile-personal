@@ -13,12 +13,12 @@ export const CheckOTPEnd = '/resources/front/passwordrecovery/checkotp';
 export const GetPromotionalOfferAgreementEnd =
   '/resources/front/agreement/promotional';
 export const AcceptPromotionalOfferAgreementEnd =
-  '​/resources​/front​/agreement​/promotional';
-export const RegisterCustomerEnd = '​/resources​/front​/register';
+  '/resources/front/agreement/promotional';
+export const RegisterCustomerEnd = '/resources/front/register?language=KA';
 export const GetUserAgreementEnd = '/resources/front/customer/agreement';
 export const AcceptUserAgreementEnd = '/resources/front/customer/agreement';
 export const SendRegistrationOtpEnd = '/resources/front/customer/sendotp';
 export const CheckRegistrationOtpEnd = '/resources/front/customer/checkotp';
 export const CustomerExtraEnd = '/resources/front/customer/extra';
 export const FilledInfoEnd = '/resources/front/customer/info';
-export const GetCountriesEnd = '/resources/front/country';
+export const GetCountriesEnd = '/resources/front/country?language=KA';

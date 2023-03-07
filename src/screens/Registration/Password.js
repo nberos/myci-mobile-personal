@@ -8,11 +8,15 @@ import RegistrationTitle from '../../components/UI/RegistrationTitle';
 import PasswordCard from '../../components/Cards/PasswordCard';
 import {useDispatch} from 'react-redux';
 import {setRegisterData} from '../../redux/reducers/registration/registration.actions';
-import {RegisterCustomer} from '../../services/NetworkManager';
+import {
+  AuthorizeCustomer,
+  RegisterCustomer,
+} from '../../services/NetworkManager';
+import {setTokens} from '../../utils/storage';
 
 const Password = ({navigation, route}) => {
-  const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
+  const [password, setPassword] = useState('paroli111');
+  const [repeatPassword, setRepeatPassword] = useState('paroli111');
   const dispatch = useDispatch();
 
   const {customerType, userName, firstName, lastName} = route.params;
@@ -26,17 +30,26 @@ const Password = ({navigation, route}) => {
       password: password,
     };
 
+    console.log(userData);
     try {
       if (password === repeatPassword) {
         dispatch(setRegisterData(userData));
-        // const response = await RegisterCustomer(userData);
+        const response = await RegisterCustomer(userData);
 
-        // if (response.status === 200) {
-        navigation.navigate('ContactInfo');
-        // }
+        if (response.status === 201) {
+          const authUserResponse = await AuthorizeCustomer({
+            password: password,
+            username: userName,
+          });
+
+          if (authUserResponse.status === 201) {
+            await setTokens(authUserResponse.data);
+            navigation.navigate('ContactInfo');
+          }
+        }
       }
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 

@@ -7,10 +7,10 @@ import RegistrationFooter from '../../components/UI/RegistrationFooter';
 import RegistrationTitle from '../../components/UI/RegistrationTitle';
 
 const PersonalInfo = ({navigation, route}) => {
-  const [id, setId] = useState('');
-  const [repeatId, setRepeatId] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [id, setId] = useState('11111111111');
+  const [repeatId, setRepeatId] = useState('11111111111');
+  const [firstName, setFirstName] = useState('nika');
+  const [lastName, setLastName] = useState('nika');
 
   const {customerType} = route.params;
 

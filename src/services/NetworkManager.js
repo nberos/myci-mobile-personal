@@ -21,8 +21,16 @@ import {
 
 import {BASE_URL} from '@env';
 
-export const AuthorizeCustomer = data => {
-  return axios.post(BASE_URL + AuthCustomerEnd, data);
+export const AuthorizeCustomer = (data, access_token) => {
+  if (access_token) {
+    return axios.post(BASE_URL + AuthCustomerEnd, data, {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
+  } else {
+    return axios.post(BASE_URL + AuthCustomerEnd, data);
+  }
 };
 
 export const ReauthorizeCustomer = tokens => {
@@ -76,12 +84,9 @@ export const CheckRegistrationOtp = code => {
   return axios.put(BASE_URL + CheckRegistrationOtpEnd, {code: code});
 };
 
-export const CustomerExtra = (address, birthDate, email, countryId) => {
-  return axios.put(BASE_URL + CustomerExtraEnd, {
-    address: address,
-    birthDate: birthDate,
-    email: email,
-    countryId: countryId,
+export const CustomerExtra = (data, access_token) => {
+  return axios.put(BASE_URL + CustomerExtraEnd, data, {
+    headers: {Authorization: `Bearer ${access_token}`},
   });
 };
 
@@ -89,6 +94,10 @@ export const FilledInfo = (lang, step) => {
   return axios.get(BASE_URL + FilledInfoEnd);
 };
 
-export const GetCountries = lang => {
-  return axios.get(BASE_URL + GetCountriesEnd);
+export const GetCountries = access_token => {
+  return axios.get(BASE_URL + GetCountriesEnd, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
 };

@@ -2,29 +2,24 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, TextInput, Switch} from 'react-native';
 import ModalSelector from 'react-native-modal-selector';
+import {useSelector} from 'react-redux';
+import {selectCountriesData} from '../../redux/reducers/registration/registration.selectors';
 import Input from './Input';
 
-let index = 0;
-const data = [
-  {key: index++, section: true, label: 'Fruits'},
-  {key: index++, label: 'Red Apples'},
-  {key: index++, label: 'Cherries'},
-  {
-    key: index++,
-    label: 'Cranberries',
-    accessibilityLabel: 'Tap here for cranberries',
-  },
-  {key: index++, label: 'Vegetable', customKey: 'Not a fruit'},
-];
+const Dropdown = ({placeholder, value, setValue}) => {
+  const countries = useSelector(state => state);
+  const data = countries?.registration?.countiesData?.data;
 
-const Dropdown = ({placeholder, value, setValue, data}) => {
   const handleOptionChange = option => {
-    console.log(option);
-    // setValue(option.label);
+    setValue(option.name);
   };
 
   return (
-    <ModalSelector data={data} onChange={handleOptionChange}>
+    <ModalSelector
+      data={data}
+      onChange={handleOptionChange}
+      keyExtractor={item => item.id}
+      labelExtractor={item => item.name}>
       <Input
         placeholder={!value ? placeholder : value}
         value={value}

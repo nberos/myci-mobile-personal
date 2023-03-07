@@ -20,8 +20,8 @@ import AuthFooter from '../../components/UI/AuthFooter';
 // asernasib1
 
 const Login = ({navigation}) => {
-  const [username, setUsername] = useState('25001047858');
-  const [password, setPassword] = useState('paroli1212');
+  const [username, setUsername] = useState('11111111111');
+  const [password, setPassword] = useState('paroli111');
   const [invalidCredentials, setInvalidCredentials] = useState(false);
 
   const dispatch = useDispatch();
@@ -32,6 +32,8 @@ const Login = ({navigation}) => {
         password: password,
         username: username,
       });
+
+      console.log(response.data);
 
       if (response.data) {
         dispatch(setToken(response.data));
@@ -45,7 +47,7 @@ const Login = ({navigation}) => {
 
   const forgotPasswordHandler = () => navigation.replace('FPUser');
 
-  const registrationHandler = () => navigation.navigate('UserType');
+  const registrationHandler = () => navigation.navigate('ContactInfo');
 
   return (
     <View style={{flex: 1, position: 'relative'}}>
