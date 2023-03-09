@@ -77,11 +77,15 @@ export const GetUserAgreement = access_token => {
 };
 
 export const AcceptUserAgreement = access_token => {
-  return axios.patch(BASE_URL + AcceptUserAgreementEnd, {
-    headers: {
-      Authorization: `Bearer ${access_token}`,
+  return axios.patch(
+    'http://myci-adm.test.ol.ge/mci-back/resources/front/customer/agreement',
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
     },
-  });
+  );
 };
 
 export const SendRegistrationOtp = (method, data, access_token) => {

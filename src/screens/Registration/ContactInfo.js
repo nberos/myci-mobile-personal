@@ -79,7 +79,7 @@ const ContactInfo = ({navigation}) => {
       );
 
       if (response.status === 200) {
-        navigation.navigate('Confirmation');
+        navigation.navigate('Conditions');
       }
     } catch (error) {
       throw new Error(error);
