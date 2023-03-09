@@ -27,7 +27,6 @@ const FPUser = ({navigation}) => {
 
       if (sendotpResult.status === 204) {
         const otpDurationStatus = await GetOTPDuration();
-        console.log(otpDurationStatus.data.seconds);
         dispatch(setDuration(otpDurationStatus.data.seconds));
         dispatch(setUserName(username));
         setShowCode(true);

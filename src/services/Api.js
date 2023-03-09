@@ -15,7 +15,8 @@ export const GetPromotionalOfferAgreementEnd =
 export const AcceptPromotionalOfferAgreementEnd =
   '/resources/front/agreement/promotional';
 export const RegisterCustomerEnd = '/resources/front/register?language=KA';
-export const GetUserAgreementEnd = '/resources/front/customer/agreement';
+export const GetUserAgreementEnd =
+  '/resources/front/customer/agreement?language=KA';
 export const AcceptUserAgreementEnd = '/resources/front/customer/agreement';
 export const SendRegistrationOtpEnd = '/resources/front/customer/sendotp';
 export const CheckRegistrationOtpEnd = '/resources/front/customer/checkotp';

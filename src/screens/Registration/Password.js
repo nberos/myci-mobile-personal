@@ -30,7 +30,6 @@ const Password = ({navigation, route}) => {
       password: password,
     };
 
-    console.log(userData);
     try {
       if (password === repeatPassword) {
         dispatch(setRegisterData(userData));

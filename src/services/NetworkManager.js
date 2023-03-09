@@ -68,16 +68,25 @@ export const RegisterCustomer = data => {
   return axios.post(BASE_URL + RegisterCustomerEnd, data);
 };
 
-export const GetUserAgreement = () => {
-  return axios.get(BASE_URL + GetUserAgreementEnd);
+export const GetUserAgreement = access_token => {
+  return axios.get(BASE_URL + GetUserAgreementEnd, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
 };
 
 export const AcceptUserAgreement = () => {
   return axios.patch(BASE_URL + AcceptUserAgreementEnd);
 };
 
-export const SendRegistrationOtp = (phone, email) => {
-  return axios.put(BASE_URL + SendRegistrationOtpEnd);
+export const SendRegistrationOtp = (method, data, access_token) => {
+  console.log(BASE_URL + SendRegistrationOtpEnd + `?${method}=${data}`);
+  return axios.put(BASE_URL + SendRegistrationOtpEnd + `?${method}=${data}`, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
 };
 
 export const CheckRegistrationOtp = code => {

@@ -1,5 +1,6 @@
 import {StyleSheet, View, Text, Animated} from 'react-native';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import {RenderHTML} from 'react-native-render-html';
 
 import RegistrationTitle from '../../components/UI/RegistrationTitle';
 import RegistrationFooter from '../../components/UI/RegistrationFooter';
@@ -8,10 +9,13 @@ import {ScrollView} from 'react-native-gesture-handler';
 import ConfirmButton from '../../components/Buttons/ConfirmButton';
 import Link from '../../components/Buttons/Link';
 import BottomSheetModal from '../../components/Modals/BottomSheetModal';
+import {GetUserAgreement} from '../../services/NetworkManager';
+import {getTokens} from '../../utils/storage';
 
 const Conditions = ({navigation}) => {
   const [showModal, setShowModal] = useState(false);
-
+  const [uAText, setUAText] = useState();
+  // console.log(uAText);
   const additionalLink = (
     <Link
       style={{fontSize: 8}}
@@ -19,6 +23,23 @@ const Conditions = ({navigation}) => {
       onPress={() => setShowModal(!showModal)}
     />
   );
+
+  useEffect(() => {
+    const fn = async () => {
+      try {
+        const {accessToken} = await getTokens();
+        const res = await GetUserAgreement(accessToken);
+
+        if (res.status === 200) {
+          setUAText(res.data.agreement);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fn();
+  }, []);
 
   return (
     <View style={{flex: 1, position: 'relative'}}>
@@ -30,7 +51,20 @@ const Conditions = ({navigation}) => {
           <View style={styles.bodyContainer}>
             <View style={styles.conditionsContainer}>
               <ScrollView>
-                <Text style={styles.conditionsText}></Text>
+                <RenderHTML
+                  source={{
+                    html: uAText,
+                  }}
+                  ignoredStyles={['fontWeight', 'fontFamily']}
+                  tagsStyles={{
+                    p: {marginBottom: -10, color: '#000'},
+                    u: {textDecorationStyle: undefined},
+                    ul: {
+                      color: '#000',
+                    },
+                  }}
+                  contentWidth={100}
+                />
               </ScrollView>
             </View>
             <View style={styles.btnContainer}>

@@ -11,7 +11,7 @@ const Dropdown = ({placeholder, value, setValue}) => {
   const data = countries?.registration?.countiesData?.data;
 
   const handleOptionChange = option => {
-    setValue(option.name);
+    setValue(option.id);
   };
 
   return (
