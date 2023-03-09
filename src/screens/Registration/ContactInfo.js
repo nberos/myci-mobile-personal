@@ -24,7 +24,7 @@ import {setToken} from '../../redux/reducers/auth/auth.actions';
 
 const ContactInfo = ({navigation}) => {
   const [date, setDate] = useState();
-  const [country, setCountry] = useState('');
+  const [country, setCountry] = useState();
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -49,23 +49,24 @@ const ContactInfo = ({navigation}) => {
   useEffect(() => {
     const fn = async () => {
       const {accessToken} = await getTokens();
-      console.log(accessToken);
       dispatch(fetchCountriesData(accessToken));
     };
     fn();
   }, []);
 
   const navigateToNextHandler = async () => {
-    const extraData = {
-      address: address,
-      birthDate: date,
-      email: email,
-      countryId: country,
-    };
-
     try {
       dispatch(setExtraData(extraData));
-      const response = await CustomerExtra(extraData, accessToken);
+      const {accessToken} = await getTokens();
+      const response = await CustomerExtra(
+        {
+          address: address,
+          birthDate: formattedDate,
+          email: email,
+          countryId: country,
+        },
+        accessToken,
+      );
 
       if (response.status === 200) {
         navigation.navigate('Confirmation');

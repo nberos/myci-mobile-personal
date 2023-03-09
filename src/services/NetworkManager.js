@@ -76,8 +76,12 @@ export const GetUserAgreement = access_token => {
   });
 };
 
-export const AcceptUserAgreement = () => {
-  return axios.patch(BASE_URL + AcceptUserAgreementEnd);
+export const AcceptUserAgreement = access_token => {
+  return axios.patch(BASE_URL + AcceptUserAgreementEnd, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
 };
 
 export const SendRegistrationOtp = (method, data, access_token) => {
@@ -94,8 +98,11 @@ export const CheckRegistrationOtp = code => {
 };
 
 export const CustomerExtra = (data, access_token) => {
-  return axios.put(BASE_URL + CustomerExtraEnd, data, {
-    headers: {Authorization: `Bearer ${access_token}`},
+  console.log(data, access_token);
+  return axios.post(BASE_URL + CustomerExtraEnd, data, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
   });
 };
 

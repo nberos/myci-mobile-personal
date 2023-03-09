@@ -47,7 +47,7 @@ const Login = ({navigation}) => {
 
   const forgotPasswordHandler = () => navigation.replace('FPUser');
 
-  const registrationHandler = () => navigation.navigate('Conditions');
+  const registrationHandler = () => navigation.navigate('UserType');
 
   return (
     <View style={{flex: 1, position: 'relative'}}>

@@ -1,8 +1,9 @@
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import BottomSheet, {BottomSheetBackdrop} from '@gorhom/bottom-sheet';
 import {useMemo, useCallback, useRef} from 'react';
+import {RenderHTML} from 'react-native-render-html';
 
-const BottomSheetModal = ({show, setShow}) => {
+const BottomSheetModal = ({show, setShow, content}) => {
   const bottomSheetRef = useRef(null);
 
   // variables
@@ -35,7 +36,20 @@ const BottomSheetModal = ({show, setShow}) => {
         backdropComponent={renderBackdrop}
         onChange={handleSheetChanges}>
         <View style={styles.contentContainer}>
-          <Text>Awesome 🎉</Text>
+          <RenderHTML
+            source={{
+              html: content,
+            }}
+            ignoredStyles={['fontWeight', 'fontFamily']}
+            tagsStyles={{
+              p: {marginBottom: -10, color: '#000'},
+              u: {textDecorationStyle: undefined},
+              ul: {
+                color: '#000',
+              },
+            }}
+            contentWidth={100}
+          />
         </View>
       </BottomSheet>
     </View>
