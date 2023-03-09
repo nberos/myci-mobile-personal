@@ -90,15 +90,27 @@ export const AcceptUserAgreement = access_token => {
 
 export const SendRegistrationOtp = (method, data, access_token) => {
   console.log(BASE_URL + SendRegistrationOtpEnd + `?${method}=${data}`);
-  return axios.put(BASE_URL + SendRegistrationOtpEnd + `?${method}=${data}`, {
-    headers: {
-      Authorization: `Bearer ${access_token}`,
+  return axios.put(
+    BASE_URL + SendRegistrationOtpEnd + `?${method}=${data}`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
     },
-  });
+  );
 };
 
-export const CheckRegistrationOtp = code => {
-  return axios.put(BASE_URL + CheckRegistrationOtpEnd, {code: code});
+export const CheckRegistrationOtp = (code, access_token) => {
+  return axios.put(
+    BASE_URL + CheckRegistrationOtpEnd,
+    {code: code},
+    {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    },
+  );
 };
 
 export const CustomerExtra = (data, access_token) => {
