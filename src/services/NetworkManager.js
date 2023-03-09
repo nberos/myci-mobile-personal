@@ -99,7 +99,7 @@ export const CheckRegistrationOtp = code => {
 
 export const CustomerExtra = (data, access_token) => {
   console.log(data, access_token);
-  return axios.post(BASE_URL + CustomerExtraEnd, data, {
+  return axios.put(BASE_URL + CustomerExtraEnd, data, {
     headers: {
       Authorization: `Bearer ${access_token}`,
     },

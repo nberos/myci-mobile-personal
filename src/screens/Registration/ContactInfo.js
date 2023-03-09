@@ -19,6 +19,7 @@ import {
 import {getTokens, removeTokens, setTokens} from '../../utils/storage';
 import {selectCountriesData} from '../../redux/reducers/registration/registration.selectors';
 import {setToken} from '../../redux/reducers/auth/auth.actions';
+import {formatString} from '../../utils/date';
 
 // const accessToken = '';
 
@@ -32,6 +33,8 @@ const ContactInfo = ({navigation}) => {
   const dispatch = useDispatch();
 
   const formattedDate = JSON.stringify(date)?.slice(1, 11);
+
+  const {newStr} = formatString(formattedDate);
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -56,12 +59,19 @@ const ContactInfo = ({navigation}) => {
 
   const navigateToNextHandler = async () => {
     try {
-      dispatch(setExtraData(extraData));
+      dispatch(
+        setExtraData({
+          address: address,
+          birthDate: '30/03/2002',
+          email: email,
+          countryId: country,
+        }),
+      );
       const {accessToken} = await getTokens();
       const response = await CustomerExtra(
         {
           address: address,
-          birthDate: formattedDate,
+          birthDate: '30/03/2002',
           email: email,
           countryId: country,
         },
@@ -82,7 +92,7 @@ const ContactInfo = ({navigation}) => {
       <RegistrationTitle title="საკონტაქტო ინფორმაცია" />
       <View style={styles.formContainer}>
         <PressableInput
-          placeholder={!formattedDate ? 'დაბადების თარიღი' : formattedDate}
+          placeholder={!newStr ? 'დაბადების თარიღი' : newStr}
           onPress={showDatePicker}
         />
         <DateTimePickerModal
