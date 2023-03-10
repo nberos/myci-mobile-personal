@@ -54,10 +54,11 @@ const Confirmation = ({navigation}) => {
       sendRegisterOtp();
     } else {
       try {
-        const response = await CheckRegistrationOtp(code);
+        const {accessToken} = await getTokens();
+        const response = await CheckRegistrationOtp(code, accessToken);
 
         if (response.status === 204) {
-          navigation.navigate('Conditions');
+          navigation.navigate('Login');
         }
       } catch (error) {
         console.log(error);
