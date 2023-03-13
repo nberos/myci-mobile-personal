@@ -13,6 +13,9 @@ import {
   GetOPTDurationEnd,
   GetPromotionalOfferAgreementEnd,
   GetUserAgreementEnd,
+  LandingFAQCategoriesEnd,
+  LandingFAQEnd,
+  LandingProductsEnd,
   ReauthorizationEnd,
   RegisterCustomerEnd,
   SendOTPEnd,
@@ -21,6 +24,7 @@ import {
 
 import {BASE_URL} from '@env';
 
+// login
 export const AuthorizeCustomer = (data, access_token) => {
   if (access_token) {
     return axios.post(BASE_URL + AuthCustomerEnd, data, {
@@ -37,6 +41,7 @@ export const ReauthorizeCustomer = tokens => {
   return axios.post(BASE_URL + ReauthorizationEnd, tokens);
 };
 
+// otp
 export const SendOTP = username => {
   return axios.post(BASE_URL + SendOTPEnd, {username: username});
 };
@@ -56,6 +61,7 @@ export const CheckOTP = (username, code) => {
   return axios.post(BASE_URL + CheckOTPEnd, {username: username, code: code});
 };
 
+// registration
 export const GetPromotionalOfferAgreement = () => {
   return axios.get(BASE_URL + GetPromotionalOfferAgreementEnd);
 };
@@ -132,4 +138,22 @@ export const GetCountries = access_token => {
       Authorization: `Bearer ${access_token}`,
     },
   });
+};
+
+// landing page [drawer]
+export const LandingProducts = (type, language) => {
+  return axios.get(
+    BASE_URL + LandingProductsEnd + `?type=${type}&language=${language}`,
+  );
+};
+
+export const LandingFAQ = language => {
+  return axios.get(BASE_URL + LandingFAQEnd + `?language=${language}`);
+};
+
+export const LandingFAQCategories = (language, categoryId) => {
+  return axios.get(
+    BASE_URL + LandingFAQCategoriesEnd,
+    `?language=${language}&categoryId=${categoryId}`,
+  );
 };

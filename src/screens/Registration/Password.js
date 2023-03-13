@@ -13,6 +13,7 @@ import {
   RegisterCustomer,
 } from '../../services/NetworkManager';
 import {setTokens} from '../../utils/storage';
+import MainHeader from '../../components/UI/MainHeader';
 
 const Password = ({navigation, route}) => {
   const [password, setPassword] = useState('paroli111');
@@ -55,6 +56,7 @@ const Password = ({navigation, route}) => {
   return (
     <View style={{flex: 1}}>
       <ScrollView>
+        <MainHeader />
         <RegistrationTitle title="დააყენეთ პაროლი" />
         <PasswordCard />
         <View style={styles.formContainer}>

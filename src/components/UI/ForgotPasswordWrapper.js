@@ -4,6 +4,7 @@ import AuthFooter from '../../components/UI/AuthFooter';
 import BLogo from '../../assets/svg/Group 784.svg';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
+import MainHeader from './MainHeader';
 
 const ForgotPasswordWrapper = ({children}) => {
   const navigation = useNavigation();
@@ -13,6 +14,7 @@ const ForgotPasswordWrapper = ({children}) => {
   return (
     <View style={{flex: 1}}>
       <ScrollView>
+        <MainHeader />
         <View style={{alignItems: 'center'}}>
           <BLogo width={185} height={185} />
         </View>

@@ -20,6 +20,7 @@ import {getTokens, removeTokens, setTokens} from '../../utils/storage';
 import {selectCountriesData} from '../../redux/reducers/registration/registration.selectors';
 import {setToken} from '../../redux/reducers/auth/auth.actions';
 import {formatString} from '../../utils/date';
+import MainHeader from '../../components/UI/MainHeader';
 
 // const accessToken = '';
 
@@ -89,6 +90,7 @@ const ContactInfo = ({navigation}) => {
   return (
     <View style={{flex: 1}}>
       {/* <ScrollView> */}
+      <MainHeader />
       <RegistrationTitle title="საკონტაქტო ინფორმაცია" />
       <View style={styles.formContainer}>
         <PressableInput

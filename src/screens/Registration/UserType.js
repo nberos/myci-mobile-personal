@@ -7,6 +7,7 @@ import RightLogo from '../../assets/svg/Mask Group 185.svg';
 import RegisterCard from '../../components/Cards/RegisterCard';
 import RegistrationFooter from '../../components/UI/RegistrationFooter';
 import RegistrationTitle from '../../components/UI/RegistrationTitle';
+import MainHeader from '../../components/UI/MainHeader';
 
 const UserType = ({navigation}) => {
   const [showButton, setShowButton] = useState(false);
@@ -24,6 +25,7 @@ const UserType = ({navigation}) => {
 
   return (
     <View style={styles.rootContainer}>
+      <MainHeader />
       <RegistrationTitle title="მომხმარებლის ტიპი" />
       <View style={styles.cardContainer}>
         <RegisterCard

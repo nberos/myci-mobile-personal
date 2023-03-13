@@ -17,6 +17,7 @@ import {getTokens} from '../../utils/storage';
 import {useDispatch, useSelector} from 'react-redux';
 import {setOtpData} from '../../redux/reducers/registration/registration.actions';
 import {selectForgotpassword} from '../../redux/reducers/forgotpassword/forgotpassword.selectors';
+import MainHeader from '../../components/UI/MainHeader';
 
 const Confirmation = ({navigation}) => {
   const [activeCard, setActiveCard] = useState('');
@@ -69,6 +70,7 @@ const Confirmation = ({navigation}) => {
   return (
     <View style={styles.rootContainer}>
       <ScrollView>
+        <MainHeader />
         <RegistrationTitle title="აირჩიეთ დადასტურების მეთოდი" />
         <View style={[styles.cardContainer]}>
           <RegisterCard

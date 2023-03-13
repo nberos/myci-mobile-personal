@@ -1,8 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import Login from '../../screens/Auth/Login';
-import HLogo from '../../assets/svg/logo blc.svg';
-import Burger1 from '../../assets/svg/burger.svg';
 import FPUser from '../../screens/ForgotPassword/FPUser';
 import FPNew from '../../screens/ForgotPassword/FPNew';
 import Conditions from '../../screens/Registration/Conditions';
@@ -14,18 +13,23 @@ import UserType from '../../screens/Registration/UserType';
 
 const AuthStack = createStackNavigator();
 
+const SideDrawer = createDrawerNavigator();
+
+function SideDrawerNavigator() {
+  return (
+    <SideDrawer.Navigator screenOptions={{headerShown: false}}>
+      <SideDrawer.Screen name="Login1" component={Login} />
+    </SideDrawer.Navigator>
+  );
+}
+
 const Auth = () => {
   return (
     <AuthStack.Navigator
       screenOptions={{
-        headerStyle: {backgroundColor: 'transparent'},
-        headerRight: () => <Burger1 width={18} height={8} />,
-        headerLeft: () => <HLogo width={165} height={40} />,
-        headerRightContainerStyle: {paddingHorizontal: 15},
-        headerLeftContainerStyle: {paddingHorizontal: 15},
-        title: '',
+        headerShown: false,
       }}>
-      <AuthStack.Screen name="Login" component={Login} />
+      <AuthStack.Screen name="Login" component={SideDrawerNavigator} />
       <AuthStack.Screen name="FPUser" component={FPUser} />
       <AuthStack.Screen name="FPNew" component={FPNew} />
       <AuthStack.Screen name="Conditions" component={Conditions} />

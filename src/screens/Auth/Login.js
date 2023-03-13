@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View, Modal, Pressable} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Input from '../../components/Inputs/Input';
@@ -15,6 +15,8 @@ import {useDispatch} from 'react-redux';
 import {setTokens} from '../../utils/storage';
 import InvalidModal from '../../components/Modals/InvalidModal';
 import AuthFooter from '../../components/UI/AuthFooter';
+import {MainContext} from '../../Context/MainContext';
+import MainHeader from '../../components/UI/MainHeader';
 
 // 28888888888
 // asernasib1
@@ -24,6 +26,8 @@ const Login = ({navigation}) => {
   const [password, setPassword] = useState('paroli1111');
   const [invalidCredentials, setInvalidCredentials] = useState(false);
 
+  const {showDrawer} = useContext(MainContext);
+
   const dispatch = useDispatch();
 
   const authButtonHandler = async () => {
@@ -32,8 +36,6 @@ const Login = ({navigation}) => {
         password: password,
         username: username,
       });
-
-      console.log(response.data);
 
       if (response.data) {
         dispatch(setToken(response.data));
@@ -56,6 +58,7 @@ const Login = ({navigation}) => {
         setInvalidCredentials={setInvalidCredentials}
       />
       <ScrollView>
+        <MainHeader navigation={navigation} />
         <View style={styles.container}>
           <View style={styles.logoContainer}>
             <BLogo width={175} height={203} />

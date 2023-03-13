@@ -23,3 +23,9 @@ export const CheckRegistrationOtpEnd = '/resources/front/customer/checkotp';
 export const CustomerExtraEnd = '/resources/front/customer/extra';
 export const FilledInfoEnd = '/resources/front/customer/info';
 export const GetCountriesEnd = '/resources/front/country?language=KA';
+
+// landing page [drawer]
+export const LandingProductsEnd = '/resources/front/landingpage/products';
+export const LandingFAQEnd = '/resources/front/landingpage/faq';
+export const LandingFAQCategoriesEnd =
+  '/resources/front/landingpage/faq/categories';

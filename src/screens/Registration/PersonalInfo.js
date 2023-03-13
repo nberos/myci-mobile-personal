@@ -3,6 +3,7 @@ import {StyleSheet, View, Text} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import Button from '../../components/Buttons/Button';
 import Input from '../../components/Inputs/Input';
+import MainHeader from '../../components/UI/MainHeader';
 import RegistrationFooter from '../../components/UI/RegistrationFooter';
 import RegistrationTitle from '../../components/UI/RegistrationTitle';
 
@@ -26,6 +27,7 @@ const PersonalInfo = ({navigation, route}) => {
   return (
     <View style={{flex: 1}}>
       <ScrollView>
+        <MainHeader />
         <RegistrationTitle title="პირადი ინფორმაცია" />
         <View style={styles.formContainer}>
           <Input placeholder="პირადი ნომერი" value={id} setValue={setId} />

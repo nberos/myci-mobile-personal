@@ -15,6 +15,7 @@ import {
   GetUserAgreement,
 } from '../../services/NetworkManager';
 import {getTokens} from '../../utils/storage';
+import MainHeader from '../../components/UI/MainHeader';
 
 const Conditions = ({navigation}) => {
   const [showModal, setShowModal] = useState(false);
@@ -68,6 +69,7 @@ const Conditions = ({navigation}) => {
         />
       ) : (
         <>
+          <MainHeader />
           <RegistrationTitle title="პირობები" />
           <View style={styles.bodyContainer}>
             <View style={styles.conditionsContainer}>
