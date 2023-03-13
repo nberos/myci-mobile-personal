@@ -5,6 +5,7 @@ import {
   DrawerItem,
   DrawerItemList,
 } from '@react-navigation/drawer';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {Text, View} from 'react-native';
 
 import Login from '../../screens/Auth/Login';
@@ -29,10 +30,38 @@ import Facebook from '../../assets/svg/brands-and-logotypes1.svg';
 import Email from '../../assets/svg/emailbot.svg';
 import Phone from '../../assets/svg/phonelog.svg';
 import Languages from '../../assets/svg/Group 6370.svg';
+import PersonTab from '../../screens/Tabs/PersonTab';
+import CompanyTab from '../../screens/Tabs/CompanyTab';
+import DrawerHeader from '../../components/UI/DrawerHeader';
+import {useNavigation} from '@react-navigation/native';
 
 const AuthStack = createStackNavigator();
 
 const SideDrawer = createDrawerNavigator();
+
+const ServiceTab = createMaterialTopTabNavigator();
+
+function ServiceTabs() {
+  const navigation = useNavigation();
+
+  return (
+    <>
+      <DrawerHeader navigation={navigation} />
+      <ServiceTab.Navigator screenOptions={{}}>
+        <ServiceTab.Screen
+          name="PersonTab"
+          component={PersonTab}
+          options={{title: 'ფიზიკური'}}
+        />
+        <ServiceTab.Screen
+          name="ComapanyTab"
+          component={CompanyTab}
+          options={{title: 'იურიდიული'}}
+        />
+      </ServiceTab.Navigator>
+    </>
+  );
+}
 
 const CustomDrawerContent = props => {
   const {navigation} = props;
@@ -49,7 +78,7 @@ const CustomDrawerContent = props => {
             onPress={() => navigation.navigate('Login1')}
             activeTintColor={'red'}
             inactiveTintColor={'black'}
-            labelStyle={{fontSize: 11, marginLeft: -24}}
+            labelStyle={{fontSize: 10, marginLeft: -24}}
             icon={() => (
               <SVGWrapper color="rgba(198, 43, 39, 0.2)">
                 <PersonSVG width={14} height={14} />
@@ -70,7 +99,7 @@ const CustomDrawerContent = props => {
             onPress={() => navigation.navigate('Service')}
             activeTintColor={'red'}
             inactiveTintColor={'black'}
-            labelStyle={{fontSize: 11, marginLeft: -24}}
+            labelStyle={{fontSize: 10, marginLeft: -24}}
             icon={() => (
               <SVGWrapper color="rgba(82, 185, 37, 0.2)">
                 <ServiceSVG width={14} height={14} />
@@ -92,7 +121,7 @@ const CustomDrawerContent = props => {
             onPress={() => navigation.navigate('FAQ')}
             activeTintColor={'red'}
             inactiveTintColor={'black'}
-            labelStyle={{fontSize: 11, marginLeft: -24}}
+            labelStyle={{fontSize: 10, marginLeft: -24}}
             icon={() => (
               <SVGWrapper color="rgba(226, 155, 20, 0.2)">
                 <FAQSVG width={14} height={14} />
@@ -114,7 +143,7 @@ const CustomDrawerContent = props => {
             onPress={() => navigation.navigate('Confidential')}
             activeTintColor={'red'}
             inactiveTintColor={'black'}
-            labelStyle={{fontSize: 11, marginLeft: -24}}
+            labelStyle={{fontSize: 10, marginLeft: -24}}
             icon={() => (
               <SVGWrapper color="rgba(23, 23, 23, 0.2)">
                 <ConfSVG width={14} height={14} />
@@ -172,7 +201,7 @@ function SideDrawerNavigator() {
       screenOptions={{headerShown: false}}
       drawerContent={props => <CustomDrawerContent {...props} />}>
       <SideDrawer.Screen name="Login1" component={Login} />
-      <SideDrawer.Screen name="Service" component={Service} />
+      <SideDrawer.Screen name="Service" component={ServiceTabs} />
       <SideDrawer.Screen name="FAQ" component={FAQ} />
       <SideDrawer.Screen name="Confidential" component={Confidential} />
     </SideDrawer.Navigator>

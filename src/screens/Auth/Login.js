@@ -15,7 +15,6 @@ import {useDispatch} from 'react-redux';
 import {setTokens} from '../../utils/storage';
 import InvalidModal from '../../components/Modals/InvalidModal';
 import AuthFooter from '../../components/UI/AuthFooter';
-import {MainContext} from '../../Context/MainContext';
 import MainHeader from '../../components/UI/MainHeader';
 
 // 28888888888
@@ -25,8 +24,6 @@ const Login = ({navigation}) => {
   const [username, setUsername] = useState('12131415111');
   const [password, setPassword] = useState('paroli1111');
   const [invalidCredentials, setInvalidCredentials] = useState(false);
-
-  const {showDrawer} = useContext(MainContext);
 
   const dispatch = useDispatch();
 

@@ -1,13 +1,7 @@
 import {Pressable, View} from 'react-native';
 import Burger1 from '../../assets/svg/burger.svg';
-import {useContext} from 'react';
-import {MainContext} from '../../Context/MainContext';
 
 const DrawerButton = ({onPress}) => {
-  const {showDrawer, setShowDrawer} = useContext(MainContext);
-
-  const onDrawerClickHandler = () => setShowDrawer(true);
-
   return (
     <Pressable onPress={onPress}>
       <View
