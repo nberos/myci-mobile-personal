@@ -34,6 +34,12 @@ import PersonTab from '../../screens/Tabs/PersonTab';
 import CompanyTab from '../../screens/Tabs/CompanyTab';
 import DrawerHeader from '../../components/UI/DrawerHeader';
 import {useNavigation} from '@react-navigation/native';
+import {useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+import {
+  setServiceCompany,
+  setServicePerson,
+} from '../../redux/reducers/drawer/drawer.actions';
 
 const AuthStack = createStackNavigator();
 
@@ -43,6 +49,12 @@ const ServiceTab = createMaterialTopTabNavigator();
 
 function ServiceTabs() {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setServicePerson());
+    dispatch(setServiceCompany());
+  }, []);
 
   return (
     <>

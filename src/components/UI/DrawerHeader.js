@@ -16,7 +16,7 @@ export default DrawerHeader;
 
 const styles = StyleSheet.create({
   rootContainer: {
-    paddingVertical: 20,
+    paddingVertical: 12,
     paddingHorizontal: 15,
     backgroundColor: 'rgba(250, 250, 252, 1)',
   },

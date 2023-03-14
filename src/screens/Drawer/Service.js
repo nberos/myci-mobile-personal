@@ -4,7 +4,11 @@ import {useDispatch} from 'react-redux';
 import ServiceContextProvider, {
   ServiceContext,
 } from '../../Context/ServiceContext';
-import {setServiceData} from '../../redux/reducers/drawer/drawer.actions';
+import {
+  setServiceCompany,
+  setServiceData,
+  setServicePerson,
+} from '../../redux/reducers/drawer/drawer.actions';
 
 import {LandingProducts} from '../../services/NetworkManager';
 
@@ -17,7 +21,13 @@ const Service = ({type, children}) => {
         const response = await LandingProducts(type, 'KA');
 
         if (response.status === 200) {
-          dispatch(setServiceData(response));
+          if (type === 'PERSON') {
+            dispatch(setServicePerson(response));
+          }
+
+          if (type === 'COMPANY') {
+            dispatch(setServiceCompany(response));
+          }
         }
       } catch (error) {
         console.log(error);
