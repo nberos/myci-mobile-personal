@@ -148,12 +148,13 @@ export const LandingProducts = (type, language) => {
 };
 
 export const LandingFAQ = language => {
-  return axios.get(BASE_URL + LandingFAQEnd + `?language=${language}`);
+  return axios.get(
+    BASE_URL + LandingFAQCategoriesEnd + `?language=${language}`,
+  );
 };
 
 export const LandingFAQCategories = (language, categoryId) => {
   return axios.get(
-    BASE_URL + LandingFAQCategoriesEnd,
-    `?language=${language}&categoryId=${categoryId}`,
+    BASE_URL + LandingFAQEnd + `?language=${language}&categoryId=${categoryId}`,
   );
 };

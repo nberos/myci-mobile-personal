@@ -58,7 +58,7 @@ function ServiceTabs() {
 
   return (
     <>
-      <DrawerHeader navigation={navigation} />
+      <DrawerHeader navigation={navigation} title="ᲛᲝᲛᲡᲐᲮᲣᲠᲔᲑᲐ" />
       <ServiceTab.Navigator screenOptions={{}}>
         <ServiceTab.Screen
           name="PersonTab"

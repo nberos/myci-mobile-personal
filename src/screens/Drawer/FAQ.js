@@ -1,23 +1,72 @@
 import {useEffect, useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, ScrollView, Pressable} from 'react-native';
+import DrawerHeader from '../../components/UI/DrawerHeader';
+import {LandingFAQ, LandingFAQCategories} from '../../services/NetworkManager';
 
-const FAQ = () => {
-  const [showText, setShowText] = useState(false);
+const FAQ = ({navigation}) => {
+  const [data, setData] = useState([]);
+  const [isData, setIsData] = useState(false);
+  const [dropdownData, setDropdownData] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const fn = async () => {
+      try {
+        const response = await LandingFAQ('KA');
+
+        setData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fn();
+  }, []);
+
+  const getCategoryHandler = async id => {
+    if (isData) {
+      setShowDropdown(!showDropdown);
+    } else {
+      try {
+        const response = await LandingFAQCategories('KA', id);
+        setDropdownData(response.data);
+        setShowDropdown(true);
+        setIsData(true);
+        console.log('fetched');
+      } catch (error) {
+        console.log('error', error);
+      }
+    }
+  };
 
   return (
     <View>
-      <View
-        style={{
-          padding: 15,
-          borderWidth: 1,
-        }}>
-        <Text>ძირითადი შეკითხვები</Text>
+      <DrawerHeader navigation={navigation} title="ᲮᲨᲘᲠᲐᲓ ᲓᲐᲡᲛᲣᲚᲘ ᲙᲘᲗᲮᲕᲔᲑᲘ" />
+      <View style={{paddingHorizontal: 12}}>
+        <ScrollView>
+          {data?.map(item => (
+            <Pressable
+              key={item.id}
+              onPress={() => getCategoryHandler(item.id)}
+              style={{
+                backgroundColor: 'rgba(215, 25, 33, 0.4)',
+                padding: 18,
+                borderRadius: 18,
+                marginVertical: 8,
+              }}>
+              <Text style={{color: 'rgba(198, 43, 39, 1)', fontSize: 12}}>
+                {item.name}
+              </Text>
+            </Pressable>
+          ))}
+        </ScrollView>
       </View>
-      <View>
-        <Text></Text>
-      </View>
+      {showDropdown &&
+        dropdownData?.map(item => (
+          <View key={item.id}>
+            <Text>{item.question}</Text>
+          </View>
+        ))}
     </View>
   );
 };

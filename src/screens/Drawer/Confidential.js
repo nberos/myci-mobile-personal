@@ -5,7 +5,7 @@ import DrawerHeader from '../../components/UI/DrawerHeader';
 const Confidential = ({navigation}) => {
   return (
     <View>
-      <DrawerHeader navigation={navigation} />
+      <DrawerHeader navigation={navigation} title="ᲙᲝᲜᲤᲘᲓᲔᲜᲪᲘᲐᲚᲣᲠᲝᲑᲐ" />
       <ScrollView style={{paddingHorizontal: 12}}>
         <Text style={{fontSize: 12, color: '#000', lineHeight: 16}}>
           Lorem Ipsum საბეჭდიდატიპოგრაფიული ინდუსტრიისუშინაარსოტექსტია. იგი
